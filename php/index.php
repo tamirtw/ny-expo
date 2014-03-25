@@ -14,10 +14,16 @@ if($_POST['email']){
 			throw new Exception('Invalid Email!');
 		}
 
-		$mysqli->query("INSERT INTO coming_soon_emails
-						SET email='".$mysqli->real_escape_string($_POST['email'])."'");
-		
-		if($mysqli->affected_rows != 1){
+		$qbQuery = $db->prepare($sql);
+
+		$sql = "INSERT INTO leads (email,project) VALUES (:title,:author)";
+		$email = $_POST['email'];
+		$project = $project;
+		$q = $conn->prepare($sql);
+		$q->execute(array(':email'=> $email,
+        		          ':project'=> $project));
+
+		if($qbQuery->rowCount() != 1){
 			throw new Exception('This email already exists in the database.');
 		}
 		
