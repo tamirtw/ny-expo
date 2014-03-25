@@ -5,9 +5,18 @@ $msg = '';
 $project = 0;
 $projectName = $_REQUEST['p'];
 
-if($projectName == "ngui")
+
+function projectIdForName($name)
 {
-	$project = 1;
+	switch ($name) {
+		case 'ngui': 	return 1;
+		case 'dciti': 	return 2;
+		case 'cvm': 	return 3;
+		case 'cr': 		return 4;
+		case 'qi': 		return 5;
+		default: return 0;
+	}
+	return 0;
 }
 
 if($_POST['email']){
@@ -24,7 +33,7 @@ if($_POST['email']){
 		$sql = "INSERT INTO leads (email,project) VALUES (?,?)";
 		$email = $_POST['email'];
 		$q = $db->prepare($sql);
-		$success = $q->execute(array($email,$project));
+		$success = $q->execute(array($email,projectIdForName($projectName)));
 
 
 		if(!$success){
@@ -70,9 +79,9 @@ if($_POST['email']){
     
     <div id="slideshowContainer">
         <div id="slideshow">
-            <img src="img/slides/slide_<?=$project?>_1.jpg" width="454" height="169" alt="">
-            <img src="img/slides/slide_<?=$project?>_2.jpg" width="454" height="169" alt="">
-            <img src="img/slides/slide_<?=$project?>_3.jpg" width="454" height="169" alt="">
+            <img src="img/slides/slide_<?=projectIdForName($projectName)?>_1.jpg" width="454" height="169" alt="">
+            <img src="img/slides/slide_<?=projectIdForName($projectName)?>_2.jpg" width="454" height="169" alt="">
+            <img src="img/slides/slide_<?=projectIdForName($projectName)?>_3.jpg" width="454" height="169" alt="">
         </div>
 	</div>
         
