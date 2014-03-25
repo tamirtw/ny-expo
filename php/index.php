@@ -22,11 +22,10 @@ if($_POST['email']){
 			throw new Exception('Invalid Email!');
 		}
 
-		$sql = "INSERT INTO leads (email,project) VALUES (:title,:author)";
+		$sql = "INSERT INTO leads (email,project) VALUES (?,?)";
 		$email = $_POST['email'];
 		$q = $db->prepare($sql);
-		$q->execute(array(':email'=> $email,
-        		          ':project'=> $project));
+		$q->execute(array($email,$project));
 
 		if($qbQuery->rowCount() != 1){
 			throw new Exception('This email already exists in the database.');
