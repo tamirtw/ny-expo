@@ -1,6 +1,6 @@
 <?php
 
-// require "includes/connect.php";
+require "includes/connect.php";
 
 $msg = '';
 
