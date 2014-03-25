@@ -1,6 +1,6 @@
 <?php
 
-require "includes/connect.php";
+// require "includes/connect.php";
 
 $msg = '';
 
@@ -55,7 +55,7 @@ if($_POST['email']){
 
 <div id="page">
 
-    <h1>Coming Soon</h1>
+    <h1>Coming Soon <? echo $_GET['project'] ?></h1>
     
     <div id="slideshowContainer">
         <div id="slideshow">
