@@ -20,9 +20,11 @@ if($_POST['email']){
 			throw new Exception('Invalid Email!');
 		}
 		$db = new PDO('sqlite:' . getenv('OPENSHIFT_DATA_DIR') . 'leads.sqlite;dbname=leads');
+		print_r($db);
 		$sql = "INSERT INTO leads (email,project) VALUES (?,?)";
 		$email = $_POST['email'];
 		$q = $db->prepare($sql);
+		echo "Email:" . $email;
 		$q->execute(array($email,$project));
 
 
