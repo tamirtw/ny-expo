@@ -3,7 +3,7 @@
 $msg = '';
 
 $project = 0;
-$projectName = $_GET['p'];
+$projectName = $_REQUEST['p'];
 
 if($projectName == "ngui")
 {
@@ -25,10 +25,10 @@ if($_POST['email']){
 		$sql = "INSERT INTO leads (email,project) VALUES (?,?)";
 		$email = $_POST['email'];
 		$q = $db->prepare($sql);
-		$q->execute(array($email,$project));
+		$success = $q->execute(array($email,$project));
 
 
-		if($db->rowCount() != 1){
+		if(!$success){
 			throw new Exception('This email already exists in the database.');
 		}
 		
