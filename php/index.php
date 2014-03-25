@@ -19,7 +19,7 @@ if($_POST['email']){
 		if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
 			throw new Exception('Invalid Email!');
 		}
-		$db = new PDO('sqlite:' . getenv('OPENSHIFT_DATA_DIR') . 'lead.sqlite');
+		$db = new PDO('sqlite:' . getenv('OPENSHIFT_DATA_DIR') . 'leads.sqlite');
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		print_r($db);
 		$sql = "INSERT INTO leads (email,project) VALUES (?,?)";
@@ -43,7 +43,8 @@ if($_POST['email']){
 	catch (Exception $e){
 		
 		if($ajax){
-			die(json_encode(array('error'=>$e->getMessage())));
+			die(json_encode(array('error'=>$e->getMessage(),
+				'path'=>'sqlite:' . getenv('OPENSHIFT_DATA_DIR') . 'leads.sqlite')));
 		}
 		
 		$msg = $e->getMessage();		
