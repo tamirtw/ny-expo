@@ -1,7 +1,5 @@
 <?php
 
-require "includes/connect.php";
-
 $msg = '';
 
 $project = 0;
@@ -21,7 +19,7 @@ if($_POST['email']){
 		if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
 			throw new Exception('Invalid Email!');
 		}
-
+		$db = new PDO('sqlite:' . getenv('OPENSHIFT_DATA_DIR') . 'leads.sqlite');
 		$sql = "INSERT INTO leads (email,project) VALUES (?,?)";
 		$email = $_POST['email'];
 		$q = $db->prepare($sql);
