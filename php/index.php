@@ -4,6 +4,14 @@ require "includes/connect.php";
 
 $msg = '';
 
+$project = 0;
+$projectName = $_GET['p'];
+
+if($projectName == "ngui")
+{
+	$project = 1;
+}
+
 if($_POST['email']){
 	
 	// Requested with AJAX:
@@ -18,7 +26,6 @@ if($_POST['email']){
 
 		$sql = "INSERT INTO leads (email,project) VALUES (:title,:author)";
 		$email = $_POST['email'];
-		$project = $project;
 		$q = $conn->prepare($sql);
 		$q->execute(array(':email'=> $email,
         		          ':project'=> $project));
@@ -61,13 +68,13 @@ if($_POST['email']){
 
 <div id="page">
 
-    <h1>Coming Soon <? echo $_GET['project'] ?></h1>
+    <h1><? echo $_GET['p'] ?></h1>
     
     <div id="slideshowContainer">
         <div id="slideshow">
-            <img src="img/slides/slide1.jpg" width="454" height="169" alt="Coming Soon: Our Awesome Web App">
-            <img src="img/slides/slide2.jpg" width="454" height="169" alt="Extensive Functionality">
-            <img src="img/slides/slide3.jpg" width="454" height="169" alt="Complete with an iPhone App">
+            <img src="img/slides/slide_<?=$project?>_1.jpg" width="454" height="169" alt="Coming Soon: Our Awesome Web App">
+            <img src="img/slides/slide_<?=$project?>_2.jpg" width="454" height="169" alt="Extensive Functionality">
+            <img src="img/slides/slide_<?=$project?>_3.jpg" width="454" height="169" alt="Complete with an iPhone App">
         </div>
 	</div>
         
@@ -84,8 +91,7 @@ if($_POST['email']){
 
 <div id="footer">
 	<div class="tri"></div>
-	<h1>AJAX-ed Coming Soon Page</h1>
-	<a class="tzine" href="http://tutorialzine.com/2010/10/ajaxed-coming-soon-page/">Read &amp; Download on</a>
+	<h1>Citi Innovation Lab Tlv at NY Citi Expo</h1>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
