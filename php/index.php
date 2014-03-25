@@ -22,11 +22,9 @@ if($_POST['email']){
 			throw new Exception('Invalid Email!');
 		}
 
-		$qbQuery = $db->prepare($sql);
-
 		$sql = "INSERT INTO leads (email,project) VALUES (:title,:author)";
 		$email = $_POST['email'];
-		$q = $conn->prepare($sql);
+		$q = $db->prepare($sql);
 		$q->execute(array(':email'=> $email,
         		          ':project'=> $project));
 
@@ -57,7 +55,7 @@ if($_POST['email']){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>AJAX-ed Coming Soon Page with jQuery and PHP | Tutorialzine Demo</title>
+<title>Citi Innovation Lab Tlv at NY Citi Expo</title>
 
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 <link rel="stylesheet" type="text/css" href="css/nivo-slider.css" />
@@ -72,9 +70,9 @@ if($_POST['email']){
     
     <div id="slideshowContainer">
         <div id="slideshow">
-            <img src="img/slides/slide_<?=$project?>_1.jpg" width="454" height="169" alt="Coming Soon: Our Awesome Web App">
-            <img src="img/slides/slide_<?=$project?>_2.jpg" width="454" height="169" alt="Extensive Functionality">
-            <img src="img/slides/slide_<?=$project?>_3.jpg" width="454" height="169" alt="Complete with an iPhone App">
+            <img src="img/slides/slide_<?=$project?>_1.jpg" width="454" height="169" alt="">
+            <img src="img/slides/slide_<?=$project?>_2.jpg" width="454" height="169" alt="">
+            <img src="img/slides/slide_<?=$project?>_3.jpg" width="454" height="169" alt="">
         </div>
 	</div>
         
