@@ -25,7 +25,7 @@ $(document).ready(function(){
 		}
 		working = true;
 		
-		$.post("./index.php",{email:$('#email').val()},function(r){
+		$.post(window.location,{email:$('#email').val()},function(r){
 			if(r.error){
 				$('#email').val(r.error);
 			}
