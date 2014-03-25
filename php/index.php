@@ -25,7 +25,6 @@ if($_POST['email']){
 		$sql = "INSERT INTO leads (email,project) VALUES (?,?)";
 		$email = $_POST['email'];
 		$q = $db->prepare($sql);
-		echo "Email:" . $email;
 		$q->execute(array($email,$project));
 
 
